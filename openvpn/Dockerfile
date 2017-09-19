@@ -8,4 +8,4 @@ RUN apt-get install -y openvpn
 
 RUN apt-get install -y nodejs
 
-# openvpn /etc/vpn-config/*.ovpn
+CMD ["nodejs", "/etc/http-proxy-server/index.js"]

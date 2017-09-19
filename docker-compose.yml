@@ -1,0 +1,17 @@
+version: '2'
+services:
+  vpn:
+    build:
+      context: ./openvpn
+      args:
+      - http_proxy=${HTTP_PROXY}
+    container_name: vpn
+    environment:
+      - http_proxy=${HTTP_PROXY}
+    volumes:
+      - ./.vpn-config:/etc/vpn-config
+    tty: true
+    devices:
+      - "/dev/net/tun"
+    cap_add:
+      - NET_ADMIN

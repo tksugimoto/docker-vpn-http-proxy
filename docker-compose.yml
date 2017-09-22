@@ -5,11 +5,15 @@ services:
       context: ./openvpn
       args:
       - http_proxy=${HTTP_PROXY}
+      - https_proxy=${HTTP_PROXY}
     container_name: vpn
     environment:
       - http_proxy=${HTTP_PROXY}
     volumes:
       - ./.vpn-config:/etc/vpn-config
+      - ./http-proxy-server:/etc/http-proxy-server
+    ports:
+      - "127.0.0.1:18080:8080"
     tty: true
     devices:
       - "/dev/net/tun"

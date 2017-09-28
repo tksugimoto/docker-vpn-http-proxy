@@ -12,7 +12,7 @@ services:
       - ./.vpn-config:/etc/vpn-config
       - ./http-proxy-server:/etc/http-proxy-server
     ports:
-      - "127.0.0.1:18080:8080"
+      - "${PROXY_BIND_IP_PORT}:8080"
     tty: true
     devices:
       - "/dev/net/tun"

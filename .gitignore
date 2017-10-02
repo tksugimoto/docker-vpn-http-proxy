@@ -1,2 +1,3 @@
-/.vpn-config/
+/vpn-config/*
+!/vpn-config/.gitkeep
 /.env

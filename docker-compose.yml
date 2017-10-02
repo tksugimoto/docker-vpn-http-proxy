@@ -9,7 +9,7 @@ services:
     environment:
       - http_proxy=${HTTP_PROXY}
     volumes:
-      - ./.vpn-config:/etc/vpn-config
+      - ./vpn-config:/etc/vpn-config
       - ./http-proxy-server:/etc/http-proxy-server
     ports:
       - "${PROXY_BIND_IP_PORT}:8080"

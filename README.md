@@ -12,7 +12,7 @@
 ## 使い方
 1. git, docker, docker-compose をインストール
 1. 接続したいVPNの数だけ以下を繰り返す
-    1. このディレクトリを複製（ `git clone`, `cp`, etc）
+    1. このフォルダを複製（ `git clone`, `cp`, etc）
     1. プロキシサーバー用ソースコードの準備  
         Git submodule を使って別リポジトリを参照しているのでgitコマンドの実行が必要
         1. `git submodule init`

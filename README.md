@@ -28,3 +28,14 @@
         * おすすめ：`proxy.pac` を使用
             * 複数VPNを同時利用する場合は必須
     1. `connect-vpn.bat` を実行
+
+## Tips
+### OpenVPN にプロキシを使わせる方法
+`vpn-config` フォルダに配置した設定ファイル（`.ovpn` 拡張子）に以下のプロキシ設定を追加
+```
+http-proxy <proxy_fqdn> <proxy_port>
+```
+例
+```
+http-proxy proxy.example.com 8080
+```

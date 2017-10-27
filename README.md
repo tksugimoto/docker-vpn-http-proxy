@@ -39,3 +39,12 @@ http-proxy <proxy_fqdn> <proxy_port>
 ```
 http-proxy proxy.example.com 8080
 ```
+
+### OpenVPN でのログイン時にUser IDの入力を省略する方法
+1. `vpn-config` フォルダに `user.txt` ファイルを作成
+1. `user.txt` ファイルの1行目にUser IDを記述
+1. `vpn-config` フォルダに配置した設定ファイル（`.ovpn` 拡張子）に以下の認証設定を追加
+    ```
+    auth-user-pass /etc/vpn-config/user.txt
+    ```
+    * ※ すでに、 `auth-user-pass` 行が存在する場合は置き換え

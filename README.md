@@ -19,7 +19,7 @@
         1. `git submodule update`
     1. 環境変数設定
         * `cp .env.sample .env`
-        * `.env` ファイルを編集
+        * `.env` ファイルを編集（詳細は後述）
     1. `vpn-config` フォルダに `.ovpn` 拡張子のOpenVPN用設定ファイルを配置
         * ファイル名は自由（`.ovpn` 拡張子で検索する）
         * フォルダ内に1つの `.ovpn` 拡張子のみ可
@@ -28,6 +28,21 @@
         * おすすめ：`proxy.pac` を使用
             * 複数VPNを同時利用する場合は必須
     1. `connect-vpn.bat` を実行
+
+### 設定値 (`.env` ファイル)
+* `key=value` 形式
+    * ※ `=` 前後には空白無し
+* `#` 始まりはコメント行
+
+#### `PROXY_BIND_IP_PORT`
+コンテナ内のproxyのbindをhost側につなげる際のhost側の待ち受けIP:PORT
+```
+PROXY_BIND_IP_PORT=127.0.0.1:18080
+```
+※ Docker Toolbox (VirtualBox) を使っている場合は、コンテナの待ち受けIPを `0.0.0.0` として、ブラウザに設定するプロキシは、VMのIPにする必要がある（VMのIPは以下のコマンド確認可能）。
+```
+docker-machine ip
+```
 
 ## Tips
 ### OpenVPN にプロキシを使わせる方法

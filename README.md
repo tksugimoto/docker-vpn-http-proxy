@@ -2,6 +2,7 @@
 複数のVPN接続を行なうためのDockerコンテナ
 
 ## 動作原理
+![構成図](doc/image/configuration_diagram.png)
 * Dockerコンテナ内でVPN接続
     * OpenVPN を使用
 * Dockerコンテナ内で起動しているHTTPプロキシ経由でアクセス

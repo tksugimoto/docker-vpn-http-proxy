@@ -23,9 +23,6 @@ services:
   pop3_proxy:
     build:
       context: ./pop3-proxy
-      args:
-      - http_proxy=${HTTP_PROXY}
-      - https_proxy=${HTTP_PROXY}
     environment:
       - pop3_proxy_target=${POP3_PROXY_TARGET}
     links:

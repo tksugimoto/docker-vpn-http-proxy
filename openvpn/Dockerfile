@@ -5,9 +5,10 @@ ARG https_proxy
 
 RUN apt-get update && apt-get install -y openvpn
 
-# node 6をinstall
-RUN apt-get update && apt-get install -y curl
-RUN curl -sL https://deb.nodesource.com/setup_6.x | bash -
-RUN apt-get update && apt-get install -y nodejs
+# Squidをinstall
+RUN apt-get update && apt-get install -y squid3
 
-CMD ["node", "/etc/http-proxy-server/index.js"]
+COPY squid.conf /etc/squid/squid.conf
+
+# -N: No daemon mode.
+CMD ["squid", "-N"]

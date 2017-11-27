@@ -1,3 +1,0 @@
-[submodule "http-proxy-server"]
-	path = http-proxy-server
-	url = https://github.com/tksugimoto/node-simple-http-proxy.git

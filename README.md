@@ -88,3 +88,21 @@ http-proxy proxy.example.com 8080
     auth-user-pass /etc/vpn-config/user.txt
     ```
     * ※ すでに、 `auth-user-pass` 行が存在する場合は置き換え
+
+### SSH・Git(SSH)でコンテナ内のプロキシを経由する方法
+SSH config ( `~/.ssh/config` ) に `ProxyCommand` を追加
+
+```
+Host server1
+    HostName         10.12.34.56
+    IdentityFile     ~/.ssh/keys/server1
+    ProxyCommand     connect.exe -H 127.0.0.1:18080 %h %p
+```
+
+`connect.exe` は `-H` オプションでプロキシサーバーを指定する
+```
+ProxyCommand     connect.exe -H <proxy-server-ip>:<proxy-server-port> %h %p
+```
+参照: `.env` の `PROXY_BIND_IP_PORT` 設定
+
+※ Gitもsshで接続している場合は同じ方法で可能

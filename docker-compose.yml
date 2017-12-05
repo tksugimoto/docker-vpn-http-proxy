@@ -4,10 +4,7 @@ services:
     build:
       context: ./openvpn
       args:
-      - http_proxy=${HTTP_PROXY}
-      - https_proxy=${HTTP_PROXY}
-    environment:
-      - http_proxy=${HTTP_PROXY}
+      - http_proxy=${http_proxy}
     volumes:
       - ./vpn-config:/etc/vpn-config
     ports:

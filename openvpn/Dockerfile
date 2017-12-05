@@ -1,7 +1,6 @@
 FROM ubuntu:16.04
 
 ARG http_proxy
-ARG https_proxy
 
 RUN apt-get update && apt-get install -y openvpn
 

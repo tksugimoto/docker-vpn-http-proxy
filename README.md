@@ -88,3 +88,14 @@ http-proxy proxy.example.com 8080
     auth-user-pass /etc/vpn-config/user.txt
     ```
     * ※ すでに、 `auth-user-pass` 行が存在する場合は置き換え
+
+## よくある質問
+### VPNログインできない（`connect-vpn.bat` が即座に閉じる）
+#### 発生例
+* PC再起動後
+    * `restart: always` にしてあり自動起動するが、正常起動しない場合あり
+#### 対応
+dockerコンテナの再起動
+```
+docker-compose restart
+```

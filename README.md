@@ -33,6 +33,17 @@
     * ※ `=` 前後には空白無し
 * `#` 始まりはコメント行
 
+#### `http_proxy`
+インターネットアクセスにプロキシの設定が必要ならコメントアウトを外してアドレス:PORTを編集
+
+```
+# http_proxy=proxy.example.com:8080
+```
+
+Docker image build 時の `openvpn` & `squid` インストールに使用
+
+※ すでに環境変数にセットされているならこのファイルでのセットは不要
+
 #### `PROXY_BIND_IP_PORT`
 コンテナ内のproxyのbindをhost側につなげる際のhost側の待ち受けIP:PORT
 ```

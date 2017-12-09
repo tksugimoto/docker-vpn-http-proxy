@@ -110,3 +110,12 @@ dockerコンテナの再起動
 ```
 docker-compose restart
 ```
+
+### `connect-vpn.bat` ウィンドウが勝手に閉じる
+#### 原因
+* ログイン時
+    * User ID & Password が間違っている
+* ログイン成功後
+    * VPN接続の切断（ネットワークやサーバー側の問題など）
+#### 対応
+再ログイン

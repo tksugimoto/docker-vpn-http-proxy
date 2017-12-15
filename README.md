@@ -119,3 +119,23 @@ docker-compose restart
     * VPN接続の切断（ネットワークやサーバー側の問題など）
 #### 対応
 再ログイン
+
+
+## 既知の問題
+### VPN側のIPがDockerで使われているネットワークのIPアドレス範囲に含まれていると対象IPのVPN側サーバーと通信できない
+### 例）コンテナ内ネットワーク
+
+確認コマンド
+```
+docker-compose exec -T vpn sh -c 'ip -f inet addr'
+```
+出力（例）
+```
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+46: eth0@if47: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default  link-netnsid 0
+    inet 172.18.0.2/16 scope global eth0
+       valid_lft forever preferred_lft forever
+```
+この場合、 `172.18.0.2/16` にVPN側のIPが含まれていると通信できない

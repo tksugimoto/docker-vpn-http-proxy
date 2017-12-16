@@ -21,7 +21,7 @@
     1. `vpn-config` フォルダに `.ovpn` 拡張子のOpenVPN用設定ファイルを配置
         * ファイル名は自由（`.ovpn` 拡張子で検索する）
         * フォルダ内に1つの `.ovpn` 拡張子のみ可
-    1. `docker-compose up`
+    1. `docker-compose up -d`
     1. `.env` で設定したプロキシ `<IP>:<PORT>` をブラウザやOSのプロキシ設定に登録
         * おすすめ：`proxy.pac` を使用
             * 複数VPNを同時利用する場合は必須
@@ -32,6 +32,17 @@
 * `key=value` 形式
     * ※ `=` 前後には空白無し
 * `#` 始まりはコメント行
+
+#### `http_proxy`
+インターネットアクセスにプロキシの設定が必要ならコメントアウトを外してアドレス:PORTを編集
+
+```
+# http_proxy=proxy.example.com:8080
+```
+
+Docker image build 時の `openvpn` & `squid` インストールに使用
+
+※ すでに環境変数にセットされているならこのファイルでのセットは不要
 
 #### `PROXY_BIND_IP_PORT`
 コンテナ内のproxyのbindをhost側につなげる際のhost側の待ち受けIP:PORT
@@ -88,3 +99,43 @@ http-proxy proxy.example.com 8080
     auth-user-pass /etc/vpn-config/user.txt
     ```
     * ※ すでに、 `auth-user-pass` 行が存在する場合は置き換え
+
+## よくある質問
+### VPNログインできない（`connect-vpn.bat` が即座に閉じる）
+#### 発生例
+* PC再起動後
+    * `restart: always` にしてあり自動起動するが、正常起動しない場合あり
+#### 対応
+dockerコンテナの再起動
+```
+docker-compose restart
+```
+
+### `connect-vpn.bat` ウィンドウが勝手に閉じる
+#### 原因
+* ログイン時
+    * User ID & Password が間違っている
+* ログイン成功後
+    * VPN接続の切断（ネットワークやサーバー側の問題など）
+#### 対応
+再ログイン
+
+
+## 既知の問題
+### VPN側のIPがDockerで使われているネットワークのIPアドレス範囲に含まれていると対象IPのVPN側サーバーと通信できない
+### 例）コンテナ内ネットワーク
+
+確認コマンド
+```
+docker-compose exec -T vpn sh -c 'ip -f inet addr'
+```
+出力（例）
+```
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+46: eth0@if47: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default  link-netnsid 0
+    inet 172.18.0.2/16 scope global eth0
+       valid_lft forever preferred_lft forever
+```
+この場合、 `172.18.0.2/16` にVPN側のIPが含まれていると通信できない

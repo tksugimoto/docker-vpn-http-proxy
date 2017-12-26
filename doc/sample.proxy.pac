@@ -70,4 +70,6 @@ function FindProxyForURL(url, host) {
 	return [PROXY, DIRECT].join("; ");
 	// 必ずproxy経由
 	// return PROXY;
+	// プロキシを経由しない
+	// return DIRECT;
 }

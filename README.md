@@ -25,6 +25,7 @@
     1. `.env` で設定したプロキシ `<IP>:<PORT>` をブラウザやOSのプロキシ設定に登録
         * おすすめ：`proxy.pac` を使用
             * 複数VPNを同時利用する場合は必須
+            * サンプル: [doc/sample.proxy.pac](./doc/sample.proxy.pac)
         * POP3プロキシを使う場合はメーラーの設定を変更（`設定値` 参照）
     1. `connect-vpn.bat` を実行
 

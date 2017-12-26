@@ -8,6 +8,9 @@ digraph configuration_diagram {
         label = "Host";
         Browser -> "HTTP Proxy 1";
         Browser -> "HTTP Proxy 2";
+        "SSH Client" -> "HTTP Proxy 1";
+        "SSH Client" -> "HTTP Proxy 2";
+        Git -> "HTTP Proxy 2";
         Mailer -> "POP3 Proxy";
         subgraph cluster_container_1 {
             label = "Docker VPN container 1";

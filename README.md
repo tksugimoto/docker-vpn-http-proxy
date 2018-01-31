@@ -124,10 +124,16 @@ ProxyCommand     connect.exe -H <proxy-server-ip>:<proxy-server-port> %h %p
 #### 発生例
 * PC再起動後
     * `restart: always` にしてあり自動起動するが、正常起動しない場合あり
+* Docker更新後
+    * ボリューム共有がリセットされてOpenVPN用設定ファイル( `vpn-config` フォルダの `.ovpn` )が共有されていない場合あり
 #### 対応
 dockerコンテナの再起動
 ```
 docker-compose restart
+```
+上記対応で解決されない場合は、コンテナの再作成
+```
+docker-compose up -d --force-recreate
 ```
 
 ### `connect-vpn.bat` ウィンドウが勝手に閉じる

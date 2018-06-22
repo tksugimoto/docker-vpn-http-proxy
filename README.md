@@ -38,7 +38,7 @@
 インターネットアクセスにプロキシの設定が必要ならコメントアウトを外してアドレス:PORTを編集
 
 ```
-# http_proxy=proxy.example.com:8080
+# http_proxy=http://proxy.example.com:8080
 ```
 
 Docker image build 時の `openvpn` & `squid` インストールに使用

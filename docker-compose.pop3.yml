@@ -8,6 +8,6 @@ services:
     links:
       - vpn:vpn_http_proxy
     ports:
-      - "${POP3_BIND_IP_PORT}:110"
+      - "${POP3_BIND_IP_PORT}:3000"
     tty: true
     restart: always

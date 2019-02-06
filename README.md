@@ -8,7 +8,7 @@
 * Dockerコンテナ内で起動しているHTTPプロキシ経由でアクセス
     * ※ プロキシサーバーは `docker-compose up` で自動起動
     * コンテナ内で動作するプロキシのため、VPNへのアクセスが可能
-    * （オプション）POP3プロキシサーバー経由でメール受信も可能
+    * （オプション）メール(POP3,SMTP)プロキシサーバー経由でメール送受信も可能
 * 1コンテナ 1VPN 1proxyのため、接続するVPNごとに実行
 
 ## 使い方
@@ -26,7 +26,7 @@
         * おすすめ：`proxy.pac` を使用
             * 複数VPNを同時利用する場合は必須
             * サンプル: [doc/sample.proxy.pac](./doc/sample.proxy.pac)
-        * POP3プロキシを使う場合はメーラーの設定を変更（`設定値` 参照）
+        * メール(POP3,SMTP)プロキシを使う場合はメーラーの設定を変更（`設定値` 参照）
     1. `connect-vpn.bat` を実行
 
 ### 設定値 (`.env` ファイル)
@@ -56,15 +56,15 @@ docker-machine ip
 ```
 
 #### `COMPOSE_FILE`
-POP3プロキシサーバーも起動するかの切り替えに使用
+メール(POP3,SMTP)プロキシサーバーも起動するかの切り替えに使用
 
-* POP3プロキシサーバー無し
+* メール(POP3,SMTP)プロキシサーバー無し
     ```
     COMPOSE_FILE=docker-compose.yml
     ```
-* POP3プロキシサーバー有り
+* メール(POP3,SMTP)プロキシサーバー有り
     ```
-    COMPOSE_FILE=docker-compose.yml;docker-compose.pop3.yml
+    COMPOSE_FILE=docker-compose.yml;docker-compose.mail.yml
     ```
 
 #### `POP3_BIND_IP_PORT`
@@ -78,6 +78,20 @@ POP3_BIND_IP_PORT=127.0.0.1:10110
 POP3(TCP)パケットを転送する先のIP(host):PORT
 ```
 POP3_PROXY_TARGET=example.com:110
+```
+メーラーにもともと設定してあったIP(host):PORT
+
+#### `SMTP_BIND_IP_PORT`
+コンテナ内のSMTPプロキシサーバーのbindをhost側につなげる際のhost側の待ち受けIP:PORT
+```
+SMTP_BIND_IP_PORT=127.0.0.1:10025
+```
+メーラーの設定を上記 `SMTP_BIND_IP_PORT` の `IP:PORT` に変更する
+
+#### `SMTP_PROXY_TARGET`
+SMTP(TCP)パケットを転送する先のIP(host):PORT
+```
+SMTP_PROXY_TARGET=example.com:25
 ```
 メーラーにもともと設定してあったIP(host):PORT
 

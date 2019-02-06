@@ -4,7 +4,7 @@ services:
     build:
       context: ./pop3-proxy
     environment:
-      - pop3_proxy_target=${POP3_PROXY_TARGET}
+      - proxy_target=${POP3_PROXY_TARGET}
     links:
       - vpn:vpn_http_proxy
     ports:

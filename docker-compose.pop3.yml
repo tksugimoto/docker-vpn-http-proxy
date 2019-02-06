@@ -2,7 +2,7 @@ version: '2'
 services:
   pop3_proxy:
     build:
-      context: ./pop3-proxy
+      context: ./tcp-proxy
     environment:
       - proxy_target=${POP3_PROXY_TARGET}
     links:

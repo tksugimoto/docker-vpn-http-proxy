@@ -11,3 +11,15 @@ services:
       - "${POP3_BIND_IP_PORT}:3000"
     tty: true
     restart: always
+
+  smtp_proxy:
+    build:
+      context: ./tcp-proxy
+    environment:
+      - proxy_target=${SMTP_PROXY_TARGET}
+    links:
+      - vpn:vpn_http_proxy
+    ports:
+      - "${SMTP_BIND_IP_PORT}:3000"
+    tty: true
+    restart: always

@@ -12,6 +12,7 @@ digraph configuration_diagram {
         "SSH Client" -> "HTTP Proxy 2";
         Git -> "HTTP Proxy 2";
         Mailer -> "POP3 Proxy";
+        Mailer -> "SMTP Proxy";
         subgraph cluster_container_1 {
             label = "Docker VPN container 1";
             "HTTP Proxy 1" -> "OpenVPN 1";
@@ -25,12 +26,18 @@ digraph configuration_diagram {
             labelloc = b;
             "POP3 Proxy" -> "HTTP Proxy 2";
         }
+        subgraph cluster_container_2_smtp {
+            label = "Docker SMTP container";
+            labelloc = b;
+            "SMTP Proxy" -> "HTTP Proxy 2";
+        }
         newrank=true;
         {
             rank = same;
             "HTTP Proxy 1";
             "HTTP Proxy 2";
             "POP3 Proxy";
+            "SMTP Proxy";
         }
     }
 }

@@ -1,15 +1,15 @@
 const http = require('http');
 const net = require('net');
 
-const POP3_BIND_PORT = 110;
+const BIND_PORT = 3000;
 
-const pop3Server = net.createServer();
+const tcpProxyServer = net.createServer();
 
-pop3Server.on('connection', (clientSocket) => {
+tcpProxyServer.on('connection', (clientSocket) => {
     http.request({
         host : 'vpn_http_proxy',
         port : 8080,
-        path : process.env.pop3_proxy_target,
+        path : process.env.proxy_target,
         method: 'CONNECT',
     })
     .on('connect', (res, serverSocket) => {
@@ -26,7 +26,7 @@ pop3Server.on('connection', (clientSocket) => {
     .end();
 });
 
-pop3Server.listen(POP3_BIND_PORT, () => {
-    console.info(`Pop3 proxy server started. (IP:port = 0.0.0.0:${POP3_BIND_PORT})`);
-    console.log(`Forward to ${process.env.pop3_proxy_target}`);
+tcpProxyServer.listen(BIND_PORT, () => {
+    console.info(`TCP proxy server started. (IP:port = 0.0.0.0:${BIND_PORT})`);
+    console.log(`Forward to ${process.env.proxy_target}`);
 });

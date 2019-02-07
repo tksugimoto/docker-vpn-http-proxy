@@ -2,12 +2,12 @@ version: '2'
 services:
   pop3_proxy:
     build:
-      context: ./pop3-proxy
+      context: ./tcp-proxy
     environment:
-      - pop3_proxy_target=${POP3_PROXY_TARGET}
+      - proxy_target=${POP3_PROXY_TARGET}
     links:
       - vpn:vpn_http_proxy
     ports:
-      - "${POP3_BIND_IP_PORT}:110"
+      - "${POP3_BIND_IP_PORT}:3000"
     tty: true
     restart: always

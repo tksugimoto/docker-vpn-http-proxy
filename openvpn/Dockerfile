@@ -1,9 +1,9 @@
-FROM ubuntu:16.04
+FROM alpine:3.9
 
-RUN apt-get update && apt-get install -y openvpn
+RUN apk --update --no-cache add openvpn
 
 # Squidをinstall
-RUN apt-get update && apt-get install -y squid3
+RUN apk --update --no-cache add squid
 
 COPY squid.conf /etc/squid/squid.conf
 

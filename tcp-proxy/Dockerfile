@@ -1,4 +1,4 @@
-FROM node:6
+FROM node:10-alpine
 
 COPY tcp-proxy-server /etc/tcp-proxy-server
 

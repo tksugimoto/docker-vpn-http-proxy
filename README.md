@@ -34,11 +34,12 @@
     * ※ `=` 前後には空白無し
 * `#` 始まりはコメント行
 
-#### `http_proxy`
+#### `http_proxy`, `https_proxy`
 インターネットアクセスにプロキシの設定が必要ならコメントアウトを外してアドレス:PORTを編集
 
 ```
 # http_proxy=http://proxy.example.com:8080
+# https_proxy=http://proxy.example.com:8080
 ```
 
 Docker image build 時の `openvpn` & `squid` インストールに使用

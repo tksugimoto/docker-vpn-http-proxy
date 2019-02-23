@@ -27,7 +27,14 @@
             * 複数VPNを同時利用する場合は必須
             * サンプル: [doc/sample.proxy.pac](./doc/sample.proxy.pac)
         * メール(POP3,SMTP)プロキシを使う場合はメーラーの設定を変更（`設定値` 参照）
-    1. `connect-vpn.bat` を実行
+    1. VPN接続用scriptを実行
+        - `connect-vpn-windows.bat`
+            - Windows用
+        - `connect-vpn-windows.bash`
+            - Windows用（キーボードショートカットでクリップボードを貼り付けたい場合）
+            - Git Bash(MinTTY) などに関連付けして使う
+        - `connect-vpn-linux.sh`
+            - Linux用
 
 ### 設定値 (`.env` ファイル)
 * `key=value` 形式
@@ -135,7 +142,7 @@ ProxyCommand     connect.exe -H <proxy-server-ip>:<proxy-server-port> %h %p
 ※ Gitもsshで接続している場合は同じ方法で可能
 
 ## よくある質問
-### VPNログインできない（`connect-vpn.bat` が即座に閉じる）
+### VPNログインできない（`connect-vpn-windows.bat` などが即座に閉じる）
 #### 発生例
 * PC再起動後
     * `restart: always` にしてあり自動起動するが、正常起動しない場合あり
@@ -151,7 +158,7 @@ docker-compose restart
 docker-compose up -d --force-recreate
 ```
 
-### `connect-vpn.bat` ウィンドウが勝手に閉じる
+### VPN接続用script ウィンドウが勝手に閉じる
 #### 原因
 * ログイン時
     * User ID & Password が間違っている

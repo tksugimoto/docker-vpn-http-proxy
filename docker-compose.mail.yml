@@ -3,6 +3,9 @@ services:
   pop3_proxy:
     build:
       context: ./tcp-proxy
+      args:
+        - http_proxy
+        - https_proxy
     environment:
       - proxy_target=${POP3_PROXY_TARGET}
     links:
@@ -15,6 +18,9 @@ services:
   smtp_proxy:
     build:
       context: ./tcp-proxy
+      args:
+        - http_proxy
+        - https_proxy
     environment:
       - proxy_target=${SMTP_PROXY_TARGET}
     links:

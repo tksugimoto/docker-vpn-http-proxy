@@ -18,3 +18,8 @@ services:
     environment:
       - TZ
     restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10mb"
+        max-file: "3"

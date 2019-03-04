@@ -49,7 +49,7 @@
 # https_proxy=http://proxy.example.com:8080
 ```
 
-Docker image build 時の `openvpn` & `squid` & `tini` インストールに使用
+Docker image build 時の `openvpn` & `squid` & `tzdata` & `tini` インストールに使用
 
 ※ すでに環境変数にセットされているならこのファイルでのセットは不要
 

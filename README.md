@@ -103,6 +103,13 @@ SMTP_PROXY_TARGET=example.com:25
 ```
 メーラーにもともと設定してあったIP(host):PORT
 
+#### `TZ`
+タイムゾーン設定
+```
+TZ=Asia/Tokyo
+```
+ログの時刻をUTCから変更して理解しやすくしたいとき用
+
 ## Tips
 ### OpenVPN にプロキシを使わせる方法
 `vpn-config` フォルダに配置した設定ファイル（`.ovpn` 拡張子）に以下のプロキシ設定を追加

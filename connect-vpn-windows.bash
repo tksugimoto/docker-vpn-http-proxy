@@ -1,3 +1,3 @@
 #!/bin/bash
 
-winpty docker-compose exec vpn sh -c "openvpn /etc/vpn-config/*.ovpn"
+winpty docker-compose exec --user root vpn sh -c "openvpn /etc/vpn-config/*.ovpn"

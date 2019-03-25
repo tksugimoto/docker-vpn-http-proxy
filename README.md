@@ -49,7 +49,7 @@
 # https_proxy=http://proxy.example.com:8080
 ```
 
-Docker image build 時の `openvpn` & `squid` & `tini` インストールに使用
+Docker image build 時の `openvpn` & `squid` & `tzdata` & `tini` インストールに使用
 
 ※ すでに環境変数にセットされているならこのファイルでのセットは不要
 
@@ -102,6 +102,13 @@ SMTP(TCP)パケットを転送する先のIP(host):PORT
 SMTP_PROXY_TARGET=example.com:25
 ```
 メーラーにもともと設定してあったIP(host):PORT
+
+#### `TZ`
+タイムゾーン設定
+```
+TZ=Asia/Tokyo
+```
+ログの時刻をUTCから変更して理解しやすくしたいとき用
 
 ## Tips
 ### OpenVPN にプロキシを使わせる方法

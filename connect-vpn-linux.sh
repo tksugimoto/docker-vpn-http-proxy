@@ -1,3 +1,3 @@
 #!/bin/sh
 
-docker-compose exec vpn sh -c "openvpn /etc/vpn-config/*.ovpn"
+docker-compose exec --user root vpn sh -c "openvpn /etc/vpn-config/*.ovpn"

@@ -22,6 +22,10 @@
         * ファイル名は自由（`.ovpn` 拡張子で検索する）
         * フォルダ内に1つの `.ovpn` 拡張子のみ可
     1. `docker-compose up -d`
+        * ※ 更新時は再ビルドが必要
+            ```
+            docker-compose up -d --build
+            ```
     1. `.env` で設定したプロキシ `<IP>:<PORT>` をブラウザやOSのプロキシ設定に登録
         * おすすめ：`proxy.pac` を使用
             * 複数VPNを同時利用する場合は必須

@@ -26,7 +26,7 @@
             ```
             docker-compose up -d --build
             ```
-    1. `.env` で設定したプロキシ `<IP>:<PORT>` をブラウザやOSのプロキシ設定に登録
+    1. `.env` で設定したプロキシ `PROXY_BIND_IP_PORT` の `<IP>:<PORT>` をブラウザやOSのプロキシ設定に登録
         * おすすめ：`proxy.pac` を使用
             * 複数VPNを同時利用する場合は必須
             * 例: [doc/example.proxy.pac](./doc/example.proxy.pac)

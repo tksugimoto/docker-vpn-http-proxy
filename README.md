@@ -16,7 +16,7 @@
 1. 接続したいVPNの数だけ以下を繰り返す
     1. このフォルダを複製（ `git clone`, `cp`, etc）
     1. 環境変数設定
-        * `cp .env.sample .env`
+        * `cp .env.example .env`
         * `.env` ファイルを編集（詳細は後述）
     1. `vpn-config` フォルダに `.ovpn` 拡張子のOpenVPN用設定ファイルを配置
         * ファイル名は自由（`.ovpn` 拡張子で検索する）

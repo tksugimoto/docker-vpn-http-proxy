@@ -16,16 +16,20 @@
 1. 接続したいVPNの数だけ以下を繰り返す
     1. このフォルダを複製（ `git clone`, `cp`, etc）
     1. 環境変数設定
-        * `cp .env.sample .env`
+        * `cp .env.example .env`
         * `.env` ファイルを編集（詳細は後述）
     1. `vpn-config` フォルダに `.ovpn` 拡張子のOpenVPN用設定ファイルを配置
         * ファイル名は自由（`.ovpn` 拡張子で検索する）
         * フォルダ内に1つの `.ovpn` 拡張子のみ可
     1. `docker-compose up -d`
-    1. `.env` で設定したプロキシ `<IP>:<PORT>` をブラウザやOSのプロキシ設定に登録
+        * ※ 更新時は再ビルドが必要
+            ```
+            docker-compose up -d --build
+            ```
+    1. `.env` で設定したプロキシ `PROXY_BIND_IP_PORT` の `<IP>:<PORT>` をブラウザやOSのプロキシ設定に登録
         * おすすめ：`proxy.pac` を使用
             * 複数VPNを同時利用する場合は必須
-            * サンプル: [doc/sample.proxy.pac](./doc/sample.proxy.pac)
+            * 例: [doc/example.proxy.pac](./doc/example.proxy.pac)
         * メール(POP3,SMTP)プロキシを使う場合はメーラーの設定を変更（`設定値` 参照）
     1. VPN接続用scriptを実行
         - `connect-vpn-windows.bat`
@@ -40,6 +44,7 @@
 * `key=value` 形式
     * ※ `=` 前後には空白無し
 * `#` 始まりはコメント行
+* 同名の環境変数が定義されていると、 `.env` での定義より環境変数が優先される
 
 #### `http_proxy`, `https_proxy`
 インターネットアクセスにプロキシの設定が必要ならコメントアウトを外してアドレス:PORTを編集

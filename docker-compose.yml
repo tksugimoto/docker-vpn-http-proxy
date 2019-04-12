@@ -10,7 +10,6 @@ services:
       - ./vpn-config:/etc/vpn-config
     ports:
       - "${PROXY_BIND_IP_PORT}:8080"
-    tty: true
     devices:
       - "/dev/net/tun"
     cap_add:

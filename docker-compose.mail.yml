@@ -6,14 +6,13 @@ services:
       args:
         - http_proxy
         - https_proxy
-    environment:
-      - proxy_target=${POP3_PROXY_TARGET}
     links:
       - vpn:vpn_http_proxy
+    restart: always
+    environment:
+      - proxy_target=${POP3_PROXY_TARGET}
     ports:
       - "${POP3_BIND_IP_PORT}:3000"
-    tty: true
-    restart: always
 
   smtp_proxy:
     build:
@@ -21,11 +20,10 @@ services:
       args:
         - http_proxy
         - https_proxy
-    environment:
-      - proxy_target=${SMTP_PROXY_TARGET}
     links:
       - vpn:vpn_http_proxy
+    restart: always
+    environment:
+      - proxy_target=${SMTP_PROXY_TARGET}
     ports:
       - "${SMTP_BIND_IP_PORT}:3000"
-    tty: true
-    restart: always

@@ -15,7 +15,7 @@ services:
     cap_add:
       - NET_ADMIN
     environment:
-      - TZ
+      TZ:
     restart: always
     logging:
       driver: "json-file"

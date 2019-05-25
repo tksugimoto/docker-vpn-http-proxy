@@ -4,8 +4,8 @@ services:
     build:
       context: ./tcp-proxy
       args:
-        - http_proxy
-        - https_proxy
+        http_proxy:
+        https_proxy:
     links:
       - vpn:vpn_http_proxy
     restart: always
@@ -18,8 +18,8 @@ services:
     build:
       context: ./tcp-proxy
       args:
-        - http_proxy
-        - https_proxy
+        http_proxy:
+        https_proxy:
     links:
       - vpn:vpn_http_proxy
     restart: always

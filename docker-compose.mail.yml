@@ -6,14 +6,15 @@ x-tcp_proxy: &proxy_base
     args:
       http_proxy:
       https_proxy:
-  links:
-    - vpn:vpn_http_proxy
+  environment: &proxy_environment_base
+    proxy_host: "vpn"
   restart: always
 
 services:
   pop3_proxy:
     <<: *proxy_base
     environment:
+      <<: *proxy_environment_base
       proxy_target: "${POP3_PROXY_TARGET}"
     ports:
       - "${POP3_BIND_IP_PORT}:3000"
@@ -21,6 +22,7 @@ services:
   smtp_proxy:
     <<: *proxy_base
     environment:
+      <<: *proxy_environment_base
       proxy_target: "${SMTP_PROXY_TARGET}"
     ports:
       - "${SMTP_BIND_IP_PORT}:3000"

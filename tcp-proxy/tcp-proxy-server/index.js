@@ -1,3 +1,4 @@
+const assert = require('assert');
 const http = require('http');
 const net = require('net');
 
@@ -5,6 +6,7 @@ const BIND_PORT = 3000;
 
 const proxyHost = process.env.proxy_host;
 const proxyPort = Number(process.env.proxy_port);
+assert.ok(1 <= proxyPort && proxyPort <= 65535, `proxy_port must be a number between 1 and 65535. The specified value is "${process.env.proxy_port}".`);
 const proxyTarget = process.env.proxy_target;
 
 const tcpProxyServer = net.createServer();

@@ -8,7 +8,7 @@ const tcpProxyServer = net.createServer();
 tcpProxyServer.on('connection', (clientSocket) => {
     http.request({
         host : process.env.proxy_host,
-        port : 8080,
+        port : Number(process.env.proxy_port),
         path : process.env.proxy_target,
         method: 'CONNECT',
     })

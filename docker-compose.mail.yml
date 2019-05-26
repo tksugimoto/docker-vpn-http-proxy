@@ -8,6 +8,7 @@ x-tcp_proxy: &proxy_base
       https_proxy:
   environment: &proxy_environment_base
     proxy_host: "vpn"
+    proxy_port: 8080
   restart: always
 
 services:

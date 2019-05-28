@@ -1,29 +1,26 @@
 version: '2'
+
+x-tcp_proxy: &proxy_base
+  build:
+    context: ./tcp-proxy
+    args:
+      http_proxy:
+      https_proxy:
+  links:
+    - vpn:vpn_http_proxy
+  restart: always
+
 services:
   pop3_proxy:
-    build:
-      context: ./tcp-proxy
-      args:
-        - http_proxy
-        - https_proxy
-    links:
-      - vpn:vpn_http_proxy
-    restart: always
+    <<: *proxy_base
     environment:
-      - proxy_target=${POP3_PROXY_TARGET}
+      proxy_target: "${POP3_PROXY_TARGET}"
     ports:
       - "${POP3_BIND_IP_PORT}:3000"
 
   smtp_proxy:
-    build:
-      context: ./tcp-proxy
-      args:
-        - http_proxy
-        - https_proxy
-    links:
-      - vpn:vpn_http_proxy
-    restart: always
+    <<: *proxy_base
     environment:
-      - proxy_target=${SMTP_PROXY_TARGET}
+      proxy_target: "${SMTP_PROXY_TARGET}"
     ports:
       - "${SMTP_BIND_IP_PORT}:3000"

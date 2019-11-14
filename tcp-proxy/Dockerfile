@@ -1,6 +1,6 @@
 FROM node:10-alpine
 
-RUN apk --update add --no-cache tini
+RUN apk add --update-cache --no-cache  tini
 ENTRYPOINT ["/sbin/tini", "--"]
 
 COPY tcp-proxy-server /etc/tcp-proxy-server

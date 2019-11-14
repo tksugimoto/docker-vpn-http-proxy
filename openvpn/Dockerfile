@@ -1,11 +1,11 @@
 FROM alpine:3.9
 
-RUN apk --update --no-cache add openvpn
+RUN apk add --update-cache --no-cache  openvpn
 
-RUN apk --update --no-cache add squid
+RUN apk add --update-cache --no-cache  squid
 
 # TZ環境変数でタイムゾーンを変更できるようにするため
-RUN apk --update --no-cache add tzdata
+RUN apk add --update-cache --no-cache  tzdata
 
 COPY squid.conf /etc/squid/squid.conf
 

@@ -1,4 +1,4 @@
-FROM node:10-alpine
+FROM node:12-alpine
 
 RUN apk add --update-cache --no-cache  tini
 ENTRYPOINT ["/sbin/tini", "--"]

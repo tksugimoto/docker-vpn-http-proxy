@@ -68,16 +68,16 @@ PROXY_BIND_IP_PORT=127.0.0.1:18080
 docker-machine ip
 ```
 
-#### `COMPOSE_FILE`
+#### `COMPOSE_PROFILES`
 メール(POP3,SMTP)プロキシサーバーも起動するかの切り替えに使用
 
 * メール(POP3,SMTP)プロキシサーバー無し
     ```
-    COMPOSE_FILE=docker-compose.yml
+    # COMPOSE_PROFILES=mail
     ```
 * メール(POP3,SMTP)プロキシサーバー有り
     ```
-    COMPOSE_FILE=docker-compose.yml;docker-compose.mail.yml
+    COMPOSE_PROFILES=mail
     ```
 
 #### `POP3_BIND_IP_PORT`

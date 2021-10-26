@@ -1,4 +1,16 @@
 version: '2'
+
+x-tcp_proxy: &proxy_base
+  build:
+    context: ./tcp-proxy
+    args:
+      http_proxy:
+      https_proxy:
+  environment: &proxy_environment_base
+    proxy_host: "vpn"
+    proxy_port: 8080
+  restart: always
+
 services:
   vpn:
     build:
@@ -22,3 +34,23 @@ services:
       options:
         max-size: "10mb"
         max-file: "3"
+
+  pop3_proxy:
+    <<: *proxy_base
+    profiles:
+      - mail
+    environment:
+      <<: *proxy_environment_base
+      proxy_target: "${POP3_PROXY_TARGET}"
+    ports:
+      - "${POP3_BIND_IP_PORT}:3000"
+
+  smtp_proxy:
+    <<: *proxy_base
+    profiles:
+      - mail
+    environment:
+      <<: *proxy_environment_base
+      proxy_target: "${SMTP_PROXY_TARGET}"
+    ports:
+      - "${SMTP_BIND_IP_PORT}:3000"
